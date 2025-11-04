@@ -1,8 +1,8 @@
 # main.py
-from fastapi import FastAPI
+from fastmcp import FastMCP
 import random
 
-app = FastAPI(title="Toy MCP Server")
+mcp = FastMCP(title="Toy MCP Server")
 
 FACTS = [
     "Bananas are berries, but strawberries are not.",
@@ -12,10 +12,10 @@ FACTS = [
     "The Eiffel Tower can grow 15 cm taller during summer."
 ]
 
-@app.get("/get_unique_fact")
+@mcp.tool()
 def get_unique_fact():
     """Return a random unique fact"""
-    return {"fact": random.choice(FACTS)}
+    return random.choice(FACTS)
 
 if __name__ == "__main__":
-    app.run()
+    mcp.run()
